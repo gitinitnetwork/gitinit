@@ -2,38 +2,35 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const bodyparser = require('body-parser');
+const bodyParser = require('body-parser');
 
 //Postgresql stuff
 const pg = require('pg');
 const connectionString = process.env.DATABASE_URL || 'postgres://grgrkypm:Wj-hDJsZaHn-pUoCSW_ON_z3JED4ZnPB@baasu.db.elephantsql.com:5432/grgrkypm';
 
-
-
-
-app.use(bodyParser.urlencoded({ extended:true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-//Login (may not be needed with OAuth?)
-app.post('/login', );
+// Login (may not be needed with OAuth?)
+app.use('/login/oauth', );
 
-//Display profile
+// Display profile
 app.get('/profile', );
 
-//Edit profile
+// Edit profile
 app.put('/profile', );
 
 
-//Get to swipe screen
+// Get to swipe screen
 app.get('/swipe', );
 
 
-//Swipe left
+// Swipe left
 app.post('/swipe/:stash',);
 
-//Swipe right
+// Swipe right
 app.post('/swipe/:commit', );
 
 
-//Display all matches
+// Display all matches
 app.get('/matches');
