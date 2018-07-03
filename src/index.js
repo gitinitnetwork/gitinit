@@ -1,8 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { render } from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import './styles.css';
+import App from './components/App.jsx';
+import store from './store';
 
-const App = () => {
-  return <div>Hello</div>
-};
-
-ReactDOM.render(<App />, document.getElementById('root'));
+render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>, document.getElementById('root')
+);
