@@ -26,25 +26,25 @@ app.use(bodyParser.urlencoded({ extended:true }));
 app.use(bodyParser.json());
 
 //Login (may not be needed with OAuth?)
-app.post('/login', userController.registerUser);
+app.post('/login/oauth', userController.registerUser);
 
-//Display profile
+// Display profile
 app.get('/profile', );
 
-//Edit profile
+// Edit profile
 app.put('/profile', );
 
 
-//Get to swipe screen
+// Get to swipe screen
 app.get('/swipe', );
 
 
-//Swipe left
+// Swipe left
 app.post('/swipe/:stash',);
 
-//Swipe right
+// Swipe right
 app.post('/swipe/:commit', );
 
 
-//Display all matches
+// Display all matches
 app.get('/matches');
