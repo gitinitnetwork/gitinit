@@ -18,10 +18,10 @@ client.connect(function (err) {
   const userController = {
 
     registerUser: (req, res, next) => {
-      console.log("req.body : ", req.body)
+      console.log("req.body : ", req.body);
         let { username, date, bio, picture } = req.body;
-        let q = `INSERT INTO users VALUES (${username}, ${date}, ${bio}, ${picture});`
-        client.query(q, (req, res, next) => {
+        let q = `INSERT INTO users VALUES ('${username}', '${date}', '${bio}', '${picture}')`
+        client.query(q, (err, results) => {
             if (err) {
                 console.log('error:', err);
                 res.end();
