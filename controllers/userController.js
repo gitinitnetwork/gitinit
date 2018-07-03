@@ -18,6 +18,7 @@ client.connect(function (err) {
   const userController = {
 
     registerUser: (req, res, next) => {
+      console.log("req.body : ", req.body)
         let { username, date, bio, picture } = req.body;
         let q = `INSERT INTO users VALUES (${username}, ${date}, ${bio}, ${picture});`
         client.query(q, (req, res, next) => {
@@ -36,3 +37,5 @@ client.connect(function (err) {
 
 
   }
+
+  module.exports = userController;

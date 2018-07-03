@@ -4,8 +4,8 @@
   "description": "Dating app for coders",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open --hot",
-    "build": "webpack --mode production",
+    "start": "nodemon ./server.js",
+    "build": "webpack-dev-server --mode development --open --hot",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
