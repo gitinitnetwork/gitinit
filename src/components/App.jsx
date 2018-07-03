@@ -6,8 +6,10 @@ import Home from './Home.jsx';
 
 const App = () => {
   return (
-    <h1>Hello</h1>
-    <Link to="/"><Login /></Link>
+    <div>
+      <h1>Hello</h1>
+      <Login />
+    </div>
   );
 };
 
