@@ -19,6 +19,8 @@ const homeInitialState = {
       userBio: 'PERCH 4 LYFE'
     }
   ]
+
+  
 }
 
 export default reducers = (state = homeInitialState, action) => {
