@@ -4,18 +4,18 @@ const homeInitialState = {
   sampleUsers: [
     {
       userName: 'Leo',
-      avatar_url: 'https://files.slack.com/files-pri/TAZUURMB8-FBJB674RJ/img_5867.jpg',
-      userBio: 'je cherche pour mon amour vrai ❤️'
+      userPhoto: 'https://files.slack.com/files-pri/TAZUURMB8-FBJB674RJ/img_5867.jpg',
+      userBio: 'je cherche mon âme soeur ❤️',
     },
     {
       userName: 'Wilbur',
-      avatar_url: 'https://files.slack.com/files-pri/TAZUURMB8-FBJ1WKT09/img_4712.jpg',
-      userBio: 'just here for the belly rubs!'
+      userPhoto: 'https://files.slack.com/files-pri/TAZUURMB8-FBJ1WKT09/img_4712.jpg',
+      userBio: 'just here for the belly rubs!',
     },
     {
       userName: 'Perch Kitty and Friend',
-      avatar_url: 'https://files.slack.com/files-pri/TAZUURMB8-FBKKV4EPR/img_5550.jpg',
-      userBio: 'PERCH 4 LYFE'
+      userPhoto: 'https://files.slack.com/files-pri/TAZUURMB8-FBKKV4EPR/img_5550.jpg',
+      userBio: 'PERCH 4 LYFE',
     }
   ],
   
