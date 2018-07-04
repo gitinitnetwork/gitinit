@@ -7,8 +7,8 @@ import Home from './Home.jsx';
 const App = () => {
   return (
     <div>
-    <h1>Hello</h1>
-    <Link to="/"><Login /></Link>
+      <h1>Hello</h1>
+      <Login />
     </div>
   );
 };

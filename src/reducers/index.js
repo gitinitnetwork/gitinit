@@ -21,10 +21,31 @@ const homeInitialState = {
   ]
 }
 
+export default reducers = (state = homeInitialState, action) => {
+  switch (action.type) {
 
-const reducers = combineReducers({
-  
+    case types.SET_CLIENT_ID:
+    return state;
 
-});
+    case types.SET_CLIENT_SECRET:
+      return state;
 
-export default reducers;
+    case types.SET_USER_TOKEN:
+      return state;  
+
+    case types.SWIPE_LEFT:
+      return state;
+
+    case types.SWIPE_RIGHT:
+      return state;
+
+    case types.GET_MATCHES:
+      return state;
+    
+    case types.LOG_OUT:
+      return state;
+
+    default:
+      return state;
+
+  }};
