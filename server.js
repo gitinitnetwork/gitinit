@@ -19,13 +19,17 @@ app.use((req, res, next) => {
 const PORT = 8080;
 app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));
 
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'dist')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve(__dirname, './dist/index.html'));
+});
+
 // OAuth Login
-app.post('/login/oauth', userController.getCodeAndPost, userController.registerUser, cookieController.setTokenCookie, (req, res) => {
-  res.redirect('/home');
+app.get('/login/oauth', userController.getCodeAndPost, userController.registerUser, cookieController.setTokenCookie, (req, res) => {
+  res.sendFile(path.resolve(__dirname, './dist/index.html'));
 });
 
 // Display profile

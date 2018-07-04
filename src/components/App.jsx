@@ -7,7 +7,7 @@ import Home from './Home.jsx';
 const App = () => {
   return (
     <div>
-      <h1>Hello</h1>
+      <h1>Hi Will</h1>
       <Login />
     </div>
   );
