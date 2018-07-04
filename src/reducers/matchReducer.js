@@ -5,17 +5,17 @@ const homeInitialState = {
     {
       userName: 'Leo',
       userPhoto: 'https://files.slack.com/files-pri/TAZUURMB8-FBJB674RJ/img_5867.jpg',
-      userBio: 'je cherche pour mon amour vrai ❤️'
+      userBio: 'je cherche mon amour ❤️',
     },
     {
       userName: 'Wilbur',
       userPhoto: 'https://files.slack.com/files-pri/TAZUURMB8-FBJ1WKT09/img_4712.jpg',
-      userBio: 'just here for the belly rubs!'
+      userBio: 'just here for the belly rubs!',
     },
     {
       userName: 'Perch Kitty and Friend',
       userPhoto: 'https://files.slack.com/files-pri/TAZUURMB8-FBKKV4EPR/img_5550.jpg',
-      userBio: 'PERCH 4 LYFE'
+      userBio: 'PERCH 4 LYFE',
     }
   ]
 
