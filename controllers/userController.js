@@ -1,6 +1,7 @@
 const pg = require('pg');
+const querystring = require('querystring');
+const request = require('request');
 require('dotenv').config();
-const bodyParser = require('body-parser');
 
 const connectionString = 'postgres://grgrkypm:Wj-hDJsZaHn-pUoCSW_ON_z3JED4ZnPB@baasu.db.elephantsql.com:5432/grgrkypm'
 
@@ -12,7 +13,7 @@ client.connect(function (err) {
   } else {
     console.log('hi');
   }
-})
+});
 
 const userController = {
   getCodeAndPost: (req, res, next) => {
@@ -20,7 +21,7 @@ const userController = {
     let githubCode = querystring.parse(req.url, '?').code;
     // Post code back to GitHub with promise
     const githubPost = new Promise((resolve, reject) => {
-      request.post('https://github.com/login/oauth/access_token?client_id=d337730ee82c0f67d053&client_secret=64771a508a69cbb40ea77c68e1ec19eab4428dcb&code=' + githubCode, (err, response) => {
+      request.post(`https://github.com/login/oauth/access_token?client_id=d337730ee82c0f67d053&client_secret=64771a508a69cbb40ea77c68e1ec19eab4428dcb&code=${githubCode}`, (err, response) => {
         if (err) console.log('Could not post code to github');
         else {
           // Receive token from GitHub
@@ -43,26 +44,25 @@ const userController = {
           url: `https://api.github.com/user?access_token=${res.locals.token}`,
 
         }, (err, response) => {
-          if (err) console.log('Could not get user data github');
-          else {
+          if (err) {
+            console.log('Could not get user data github');
+            reject();
+          } else {
             resolve(JSON.parse(response.body));
           }
         });
       }).then((userInfo) => {
-        console.log("userInfo: ", userInfo);
-        // let { login, date, bio, picture } = userInfo;
-        // let q = `INSERT INTO users VALUES ('${username}', '${date}', '${bio}', '${picture}')`
-        // client.query(q, (err, results) => {
-        //   if (err) {
-        //     console.log('error:', err);
-        //     res.end();
-        //   } else {
-        //     next();
-        //   }
-        // });
-        res.locals.username = userInfo.login;
-        res.locals.password = JSON.stringify(userInfo.id);
-        next();
+        console.log('userInfo:', userInfo);
+        const { login, followers, avatar_url } = userInfo;
+        const q = `INSERT INTO users VALUES ('${login}', '${followers}', '${avatar_url}')`;
+        client.query(q, (err, results) => {
+          if (err) {
+            console.log('error:', err);
+            res.end();
+          } else {
+            next();
+          }
+        });
       });
     }
   }

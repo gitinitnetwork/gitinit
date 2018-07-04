@@ -5,4 +5,4 @@ const cookieController = {
   },
 };
 
-export default cookieController;
+module.exports = cookieController;
