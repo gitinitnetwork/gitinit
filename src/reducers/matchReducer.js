@@ -1,11 +1,11 @@
 import * as types from '../constants/actionTypes';
 
 const homeInitialState = {
-  sampleusers: [
+  sampleUsers: [
     {
       userName: 'Leo',
       userPhoto: 'https://files.slack.com/files-pri/TAZUURMB8-FBJB674RJ/img_5867.jpg',
-      userBio: 'je cherche mon amour ❤️',
+      userBio: 'je cherche mon âme soeur ❤️',
     },
     {
       userName: 'Wilbur',
@@ -17,8 +17,7 @@ const homeInitialState = {
       userPhoto: 'https://files.slack.com/files-pri/TAZUURMB8-FBKKV4EPR/img_5550.jpg',
       userBio: 'PERCH 4 LYFE',
     }
-  ]
-
+  ],
   
 }
 
