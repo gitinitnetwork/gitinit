@@ -3,9 +3,9 @@ const querystring = require('querystring');
 const request = require('request');
 require('dotenv').config();
 
-const connectionString = 'postgres://grgrkypm:Wj-hDJsZaHn-pUoCSW_ON_z3JED4ZnPB@baasu.db.elephantsql.com:5432/grgrkypm'
+const connectionString = 'postgres://grgrkypm:Wj-hDJsZaHn-pUoCSW_ON_z3JED4ZnPB@baasu.db.elephantsql.com:5432/grgrkypm';
 
-const client = new pg.Client({ connectionString })
+const client = new pg.Client({ connectionString });
 
 client.connect(function (err) {
   if (err) {
@@ -22,8 +22,11 @@ const userController = {
     // Post code back to GitHub with promise
     const githubPost = new Promise((resolve, reject) => {
       request.post(`https://github.com/login/oauth/access_token?client_id=d337730ee82c0f67d053&client_secret=64771a508a69cbb40ea77c68e1ec19eab4428dcb&code=${githubCode}`, (err, response) => {
-        if (err) console.log('Could not post code to github');
-        else {
+        if (err) {
+          console.log('Could not post code to github');
+          res.status(400).send('Error:', err);
+          reject();
+        } else {
           // Receive token from GitHub
           resolve(response.body);
         }
@@ -42,7 +45,6 @@ const userController = {
             'User-Agent': 'Git Init',
           },
           url: `https://api.github.com/user?access_token=${res.locals.token}`,
-
         }, (err, response) => {
           if (err) {
             console.log('Could not get user data github');
@@ -58,7 +60,7 @@ const userController = {
         client.query(q, (err, results) => {
           if (err) {
             console.log('error:', err);
-            res.end();
+            res.status(404).send('Errorrrr:' + err);
           } else {
             next();
           }
