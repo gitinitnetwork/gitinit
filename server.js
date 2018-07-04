@@ -19,12 +19,16 @@ app.use((req, res, next) => {
 const PORT = 8080;
 app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));
 
-app.use(express.static(path.join(__dirname, 'dist')));
+// app.use(express.static(path.join(__dirname, 'dist')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, './dist/index.html'));
+});
+
+app.get('/main.js', (req, res) => {
+  res.sendFile(path.resolve(__dirname, './dist/main.js'));
 });
 
 // OAuth Login
