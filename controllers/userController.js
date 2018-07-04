@@ -28,10 +28,8 @@ client.connect(function (err) {
               } else {
                 res.send(results);
               }
-        });
-
-
-    }
+    })
+  }
 
 
 
