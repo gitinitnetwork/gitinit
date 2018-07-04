@@ -1,14 +1,16 @@
 import React from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
-
-const Home = () => {
+import styles from '../styles.css';
+const Home = (props) => {
 
   return (
     <div id="container">
-    <div id="homePic">
+    <img id="homePic">
+      src={props.avatar_url}
+    </img>
       <button type="button"><a href="https://github.com/login/oauth/authorize?client_id=d337730ee82c0f67d053&scope=user">Log in with Github</a></button>
-    </div>
+  > 
     </div>
   );
 };

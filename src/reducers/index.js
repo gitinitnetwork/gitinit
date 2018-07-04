@@ -23,7 +23,7 @@ const homeInitialState = {
   
 }
 
-export default reducers = (state = homeInitialState, action) => {
+ default reducers = (state = homeInitialState, action) => {
   switch (action.type) {
 
     case types.SET_CLIENT_ID:
@@ -50,4 +50,6 @@ export default reducers = (state = homeInitialState, action) => {
     default:
       return state;
 
-  }};
+  }}
+;
+

@@ -8,7 +8,6 @@ const App = () => {
   return (
     <div>
       <h1>Hi Will</h1>
-      <Login />
     </div>
   );
 };
