@@ -56,15 +56,24 @@ const userController = {
       }).then((userInfo) => {
         console.log('userInfo:', userInfo);
         const { login, followers, avatar_url } = userInfo;
-        const q = `INSERT INTO users VALUES ('${login}', '${followers}', '${avatar_url}')`;
-        client.query(q, (err, results) => {
+        const findUser = `SELECT * FROM users WHERE login = '${login}'`
+        client.query(findUser, (err, results) => {
           if (err) {
-            console.log('error:', err);
-            res.status(404).send('Errorrrr:' + err);
+            const newUser = `INSERT INTO users VALUES ('${login}', '${followers}', '${avatar_url}')`;
+            client.query(newUser, (err, results) => {
+                if (err) {
+                  console.log('error:', err);
+                  res.status(404).send('Errorrrr:' + err);
+                } else {
+                  next();
+                }
+            });
           } else {
+            console.log('moving on')
             next();
           }
         });
+        
       });
     }
   }
