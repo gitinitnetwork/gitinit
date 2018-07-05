@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import logo from '../../assets/git-init-logo.png'
+import logo from '../../assets/git-init-logo.png';
 import * as actions from '../actions/actions';
 
 
@@ -27,46 +27,54 @@ class Voting extends Component {
     // make fetch request to add status of current swipe to DB
     fetch('/matches', {
       method: 'POST',
-      body: { vote: false },
+      body: { mylogin: this.props.userLogin, theirlogin: this.props.pendingUsers[0].login, vote: false },
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json',
+      },
     })
-    .then(res => res.json())
-    .then(users => { this.props.displayUsers(users); });
+      .then(res => res.json())
+      .then((users) => { this.props.displayUsers(users); });
 
     // splice current pending from pending users array and re-display
     new Promise((resolve, reject) => {
-      resolve(this.props.gitIgnore(this.props.currentPending))
+      resolve(this.props.gitIgnore(this.props.currentPending));
     })
-    .then(() => {this.props.displayUsers(this.props.pendingUsers)});
+      .then(() => { this.props.displayUsers(this.props.pendingUsers); });
   }
-  
+
   handleCommit() {
     // make fetch request to add status of current swipe to DB
     fetch('/matches', {
       method: 'POST',
-      body: { vote: true },
+      body: { mylogin: this.props.userLogin, theirlogin: this.props.pendingUsers[0].login, vote: true },
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json',
+      },
     })
-    .then(res => res.json())
-    .then(users => { 
-      this.props.displayUsers(users); 
-    });
+      .then(res => res.json())
+      .then((users) => {
+        this.props.displayUsers(users);
+      });
 
     // splice current pending from pending users array and re-display
     new Promise((resolve, reject) => {
-      resolve(this.props.gitIgnore(this.props.currentPending))
+      resolve(this.props.gitCommit(this.props.currentPending));
     })
-    .then(() => {this.props.displayUsers(this.props.pendingUsers)});
+      .then(() => { this.props.displayUsers(this.props.pendingUsers); });
   }
-  
+
   render() {
-    console.log('random', this.props.currentPending)
+    console.log('random', this.props.currentPending);
     const avatar_urls = this.props.pendingUsers.map(user => user.avatar_url);
     return (
       <div id="voting-container">
         <div id="route-buttons">
           <Link to="/settings"><div className="settings-link"><button><i className="fas fa-cog fa-2x" /></button></div></Link>
-          <Link to="/matches"><div className="matches-link"><button><img src={logo} width="80" /></button></div></Link>
+          <Link to="/matches"><div className="matches-link"><button><i className="fas fa-comments fa-2x" /></button></div></Link>
         </div>
-        <img id="homePic" src={avatar_urls[this.props.currentPending]} />
+        <img id="homePic" src={avatar_urls[this.props.currentPending]} alt="Avatar pending" />
         <div id="voting-buttons">
           <button id="ignore" onClick={this.handleIgnore}>Git Ignore</button>
           <button id="commit" onClick={this.handleCommit}>Git Commit</button>
@@ -74,6 +82,6 @@ class Voting extends Component {
       </div>
     );
   }
-};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Voting);
