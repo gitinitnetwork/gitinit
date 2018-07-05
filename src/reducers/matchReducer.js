@@ -9,26 +9,32 @@ const homeInitialState = {
       followers: 9,
     },
   ],
+  currentPending: '',
   matches: [],
 };
 
 const matchReducer = (state = homeInitialState, action) => {
   switch (action.type) {
     case types.DISPLAY_USERS: {
-      console.log('in match reducer');
-      const newState = JSON.parse(JSON.stringify(state));
+      let newState = JSON.parse(JSON.stringify(state));
       newState.pendingUsers = action.users;
+      newState.currentPending = Math.floor(Math.random() * newState.pendingUsers.length);
       return newState;
     }
-    case types.GIT_IGNORE:
-      return state;
+
+    case types.GIT_IGNORE: {
+      let newState = JSON.parse(JSON.stringify(state));
+      newState.pendingUsers.splice(action.index, 1);
+      console.log('ignoring', newState)
+      return newState;
+    }
 
     case types.GIT_COMMIT:
       return state;
 
     case types.LOAD_MATCHES: {
-      const newState = JSON.parse(JSON.stringify(state));
-      newState.matches = action.users;
+      let newState = JSON.parse(JSON.stringify(state));
+      newState.pendingUsers.splice(action.index, 1);
       return newState;
     }
 

@@ -4,7 +4,6 @@ const request = require('request');
 require('dotenv').config();
 
 const connectionString = 'postgres://grgrkypm:Wj-hDJsZaHn-pUoCSW_ON_z3JED4ZnPB@baasu.db.elephantsql.com:5432/grgrkypm';
-
 const client = new pg.Client({ connectionString });
 
 client.connect((err) => {
@@ -22,7 +21,6 @@ const userController = {
       if (err) {
         res.status(400).send(err);
       } else {
-        console.log(results);
         res.send(results);
       }
     });
@@ -70,7 +68,7 @@ const userController = {
         const { login, followers, avatar_url } = userInfo;
         const findUser = `SELECT * FROM users WHERE login = '${login}'`;
         client.query(findUser, (err, results) => {
-          if (err) {
+          if (err || !results.rows[0]) {
             const newUser = `INSERT INTO users VALUES ('${login}', '${followers}', '${avatar_url}')`;
             client.query(newUser, (err, results) => {
               if (err) {

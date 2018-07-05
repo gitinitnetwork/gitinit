@@ -5,8 +5,8 @@ import Home from './Home.jsx';
 import * as actions from '../actions/actions';
 
 const mapStateToProps = store => ({
-  sampleUsers: store.matches.sampleUsers,
-})
+  userLogin: store.matches.userLogin,
+});
 
 const mapDispatchToProps = dispatch => ({
   displayUsers: users => dispatch(actions.displayUsers(users)),
@@ -16,12 +16,11 @@ const mapDispatchToProps = dispatch => ({
 class App extends Component {
   componentDidMount() {
     fetch('/getAllUsers')
-      .then(res => res.json())
-      .then((data) => {
-        console.log('dddat data', data);
-        console.log('display', this.props);
-        this.props.displayUsers(data.rows);
-      });
+    .then(res => res.json())
+    .then(data => {
+      let potentialMatches = data.rows.filter(user => user.login !== this.props.userLogin);
+      this.props.displayUsers(potentialMatches);
+    })
   }
 
   render() {
