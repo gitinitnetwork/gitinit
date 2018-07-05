@@ -1,26 +1,21 @@
 import React from 'react';
-import { bindActionCreators } from 'redux'
-import styles from '../styles.css';
+import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import Settings from './Settings.jsx';
+import Matches from './Matches.jsx';
+import Voting from './Voting.jsx';
 
-
-
-
-
-const Home = (props) => {
-console.log(props);
+const Home = () => {
   return (
-    <div id="container">
-    <img id="homePic"
-      src={props.sampleUsers[0].avatar_url} />
-    </div>
+    <BrowserRouter>
+      <div id="home-container">
+        <Switch>
+          <Route exact path="/" render={() => <Voting />} />
+          <Route exact path="/settings" render={() => <Settings />} />
+          <Route exact path="/matches" render={() => <Matches />} />
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 };
 
-
-
-
-
-
-
-
-
+export default Home;

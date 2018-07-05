@@ -1,53 +1,52 @@
 import * as types from '../constants/actionTypes';
 
 const homeInitialState = {
-  sampleUsers: [
+  userLogin: '',
+  pendingUsers: [
     {
-      userName: 'Leo',
-      userPhoto: 'https://files.slack.com/files-pri/TAZUURMB8-FBJB674RJ/img_5867.jpg',
-      userBio: 'je cherche mon âme soeur ❤️',
+      login: 'Leo',
+      avatar_url: '',
+      followers: 9,
     },
-    {
-      userName: 'Wilbur',
-      userPhoto: 'https://files.slack.com/files-pri/TAZUURMB8-FBJ1WKT09/img_4712.jpg',
-      userBio: 'just here for the belly rubs!',
-    },
-    {
-      userName: 'Perch Kitty and Friend',
-      userPhoto: 'https://files.slack.com/files-pri/TAZUURMB8-FBKKV4EPR/img_5550.jpg',
-      userBio: 'PERCH 4 LYFE',
-    }
   ],
-  
-}
+  matches: [],
+};
 
 const matchReducer = (state = homeInitialState, action) => {
   switch (action.type) {
-
-    case types.SET_CLIENT_ID:
-    return state;
-
-    case types.SET_CLIENT_SECRET:
+    case types.DISPLAY_USERS: {
+      console.log('in match reducer');
+      const newState = JSON.parse(JSON.stringify(state));
+      newState.pendingUsers = action.users;
+      return newState;
+    }
+    case types.GIT_IGNORE:
       return state;
 
-    case types.SET_USER_TOKEN:
-      return state;  
-
-    case types.SWIPE_LEFT:
+    case types.GIT_COMMIT:
       return state;
+
+    case types.LOAD_MATCHES: {
+      const newState = JSON.parse(JSON.stringify(state));
+      newState.matches = action.users;
+      return newState;
+    }
+
+    case types.SET_LOGIN: {
+      const newState = JSON.parse(JSON.stringify(state));
+      newState.userLogin = action.login;
+      return newState;
+    }
 
     case types.SWIPE_RIGHT:
       return state;
 
-    case types.GET_MATCHES:
-      return state;
-    
     case types.LOG_OUT:
       return state;
 
     default:
       return state;
+  }
+};
 
-  }};
-
-  export default matchReducer;
+export default matchReducer;

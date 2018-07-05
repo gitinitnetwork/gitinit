@@ -1,11 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Home = () => {
+
+const Settings = () => {
   return (
-    <div id="login-container">
-      <button type="button"><a href="https://github.com/login/oauth/authorize?client_id=d337730ee82c0f67d053&scope=user">Log in with Github</a></button>
+    <div id="settings-container"> I am settings 
+      <Link to="/"><div className="close-button"><button>X</button></div></Link>
     </div>
   );
 };
 
-export default Home;
+export default Settings;

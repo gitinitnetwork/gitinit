@@ -1,18 +1,49 @@
 body {
-  background-color: dodgerblue;
+  background: url('https://images.unsplash.com/photo-1493172041957-558aacada8fa?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d522216347b969c51c03555e178589ab&auto=format&fit=crop&w=1950&q=80');
+  background-repeat: no-repeat;
 }
 
 #homePic {
-  width: 80%;
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height: 400px;
+  width: 400px;
+  display: block;
+  margin: auto;
 }
 
-img {
-  width: 100%
+div {
+  color: #BAD;
 }
 
-div.container {
+#container {
   text-align: center;
   padding: 10px 20px;
+}
+
+#home-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#route-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.close-button {
+  width: 10px;
+  height: 10px;
+}
+
+button {
+  display: inline-block;
+  margin: 0 auto;
+  width: 200px;
+  height: 100px;
+  background: #FAB;
+  font-size: 1.7em;
 }

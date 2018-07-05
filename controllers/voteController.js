@@ -56,15 +56,45 @@ const voteController = {
   },
 
   getMatches : (req, res) => {
+    let matches = [];
     const { mylogin } = req.body;
     let s = `SELECT * FROM matches WHERE (mylogin='${mylogin}' OR theirlogin='${mylogin}')`;
+    let response = []
+    const selectMatches = new Promise((resolve, reject) => {
     client.query(s, (err, results) => {
       if(err) console.log(err);
-      console.log("results : ", results);
-      for(let i = 0; results.rows)
-      res.send(results)
+      let trackIlike = [];
+      let trackTheylike = [];
+      for(let i = 0; i < results.rows.length; i++){
+        if(results.rows[i].mylogin !== req.body.mylogin && results.rows[i].vote === true) trackTheylike.push(results.rows[i].mylogin.toString());
+        if(results.rows[i].mylogin === req.body.mylogin && results.rows[i].vote === true) trackIlike.push(results.rows[i].theirlogin.toString()); 
+      }
+      for(let j = 0; j < trackIlike.length; j++){
+        if(trackTheylike.includes(trackIlike[j])) response.push(trackIlike[j]);
+      }
+      resolve();
   });
+}).then(() => {
+  console.log("response : ", response)
+  // for(let i = 0; i < response.length; i++){
+  let u = `SELECT * FROM users;`
+  console.log("u :", u);
+  client.query(u, (err, results) => {
+    if(err) console.log(err);
+    for(let j = 0; j < results.rows.length; j++){
+      if(response.includes(results.rows[j].login)) matches.push(results.rows[j]);
+    }
+    res.send(matches);
+    console.log(matches);
+  })
+  
+})
 }
+// .then(() => {
+// console.log("matches :", matches);
+// res.send(matches);
+// })
+
 }
 
 module.exports = voteController
