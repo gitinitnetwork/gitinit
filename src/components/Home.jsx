@@ -1,5 +1,5 @@
 import React from 'react';
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 const Home = () => {
@@ -13,9 +13,7 @@ const Home = () => {
   );
 };
 
-
-
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   return {
     login: state.reducers.sampleusers.userName,
     avatar_url: state.reducers.sampleusers.userPhoto,
