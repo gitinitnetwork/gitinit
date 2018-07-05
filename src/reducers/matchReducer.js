@@ -9,7 +9,7 @@ const homeInitialState = {
       followers: 9,
     },
   ],
-  currentPending: '',
+  currentPending: 0,
   matches: [],
 };
 
@@ -25,12 +25,16 @@ const matchReducer = (state = homeInitialState, action) => {
     case types.GIT_IGNORE: {
       let newState = JSON.parse(JSON.stringify(state));
       newState.pendingUsers.splice(action.index, 1);
-      console.log('ignoring', newState)
+      console.log('ignoring', newState);
       return newState;
     }
 
-    case types.GIT_COMMIT:
-      return state;
+    case types.GIT_COMMIT: {
+      let newState = JSON.parse(JSON.stringify(state));
+      newState.pendingUsers.splice(action.index, 1);
+      console.log('commiting', newState);
+      return newState;
+    }
 
     case types.LOAD_MATCHES: {
       let newState = JSON.parse(JSON.stringify(state));
