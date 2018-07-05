@@ -1,30 +1,21 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import Settings from './Settings.jsx';
+import Matches from './Matches.jsx';
+import Voting from './Voting.jsx';
 
 const Home = () => {
-
   return (
-    <div id="container">
-    <div id="homePic">
-      <button type="button"><a href="https://github.com/login/oauth/authorize?client_id=d337730ee82c0f67d053&scope=user">Log in with Github</a></button>
-    </div>
-    </div>
+    <BrowserRouter>
+      <div id="home-container">
+        <Switch>
+          <Route exact path="/" render={() => <Voting />} />
+          <Route exact path="/settings" render={() => <Settings />} />
+          <Route exact path="/matches" render={() => <Matches />} />
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    login: state.reducers.sampleusers.userName,
-    avatar_url: state.reducers.sampleusers.userPhoto,
-    followers: state.reducers.sampleusers.userBio
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(Actions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
-
-
+export default Home;
