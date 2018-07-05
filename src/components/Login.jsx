@@ -1,5 +1,6 @@
 import React from 'react';
-import logo from '../../assets/git-init-logo.png'
+import logo from '../../assets/git-init-logo.png';
+
 const Login = () => {
   return (
     <div>

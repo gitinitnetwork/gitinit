@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import logo from '../../assets/git-init-logo.png';
 import * as actions from '../actions/actions';
 
-
 const mapStateToProps = store => ({
   userLogin: store.matches.userLogin,
   pendingUsers: store.matches.pendingUsers,
@@ -67,19 +66,18 @@ class Voting extends Component {
 
   render() {
     console.log('random', this.props.currentPending);
-    const avatar_urls = this.props.pendingUsers.map(user => user.avatar_url);
+    // const avatar_urls = this.props.pendingUsers.map(user => user.avatar_url);
     return (
       <div id="voting-container">
         <div id="route-buttons">
-<<<<<<< HEAD
-          <Link to="/settings"><div className="settings-link"><button className="buttons"><i className="fas fa-cog fa-2x" /></button></div></Link>
-          <Link to="/matches"><div className="matches-link"><button className="buttons"><img src={logo} width="80" /></button></div></Link>
-=======
           <Link to="/settings"><div className="settings-link"><button><i className="fas fa-cog fa-2x" /></button></div></Link>
           <Link to="/matches"><div className="matches-link"><button><i className="fas fa-comments fa-2x" /></button></div></Link>
->>>>>>> 381712a39527b5073f854b9443e8879210763aba
         </div>
-        <img id="homePic" src={avatar_urls[this.props.currentPending]} alt="Avatar pending" />
+        <img id="homePic" src={this.props.pendingUsers[this.props.currentPending].avatar_url} alt="Avatar pending" />
+        <div className="pending-info">
+          <h4>User: { this.props.pendingUsers[this.props.currentPending].login }</h4>
+          <h4>Followers: { this.props.pendingUsers[this.props.currentPending].followers }</h4>
+        </div>
         <div id="voting-buttons">
           <button className="buttons" id="ignore" onClick={this.handleIgnore}>Git Ignore</button>
           <button className="buttons" id="commit" onClick={this.handleCommit}>Git Commit</button>
