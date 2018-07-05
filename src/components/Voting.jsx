@@ -71,13 +71,18 @@ class Voting extends Component {
     return (
       <div id="voting-container">
         <div id="route-buttons">
+<<<<<<< HEAD
+          <Link to="/settings"><div className="settings-link"><button className="buttons"><i className="fas fa-cog fa-2x" /></button></div></Link>
+          <Link to="/matches"><div className="matches-link"><button className="buttons"><img src={logo} width="80" /></button></div></Link>
+=======
           <Link to="/settings"><div className="settings-link"><button><i className="fas fa-cog fa-2x" /></button></div></Link>
           <Link to="/matches"><div className="matches-link"><button><i className="fas fa-comments fa-2x" /></button></div></Link>
+>>>>>>> 381712a39527b5073f854b9443e8879210763aba
         </div>
         <img id="homePic" src={avatar_urls[this.props.currentPending]} alt="Avatar pending" />
         <div id="voting-buttons">
-          <button id="ignore" onClick={this.handleIgnore}>Git Ignore</button>
-          <button id="commit" onClick={this.handleCommit}>Git Commit</button>
+          <button className="buttons" id="ignore" onClick={this.handleIgnore}>Git Ignore</button>
+          <button className="buttons" id="commit" onClick={this.handleCommit}>Git Commit</button>
         </div>
       </div>
     );

@@ -7,7 +7,7 @@ const client = new pg.Client({ connectionString })
 
 client.connect((err) => {
   if (err) {
-    res.status(400).send(err);
+    console.log(err);
   } else {
     console.log('connected to pg...');
   }
