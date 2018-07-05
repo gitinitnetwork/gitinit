@@ -38,6 +38,8 @@ app.get('/main.js', (req, res) => {
   res.sendFile(path.resolve(__dirname, './dist/main.js'));
 });
 
+app.get('/getAllUsers', userController.getAllUsers);
+
 // OAuth Login
 app.get('/login/oauth', 
   userController.getCodeAndPost, 
