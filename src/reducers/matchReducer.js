@@ -1,6 +1,7 @@
 import * as types from '../constants/actionTypes';
 
 const homeInitialState = {
+  userLogin: '',
   pendingUsers: [
     {
       login: 'Leo',
@@ -8,6 +9,7 @@ const homeInitialState = {
       followers: 9,
     },
   ],
+  matches: [],
 };
 
 const matchReducer = (state = homeInitialState, action) => {
@@ -22,10 +24,19 @@ const matchReducer = (state = homeInitialState, action) => {
       return state;
 
     case types.GIT_COMMIT:
-      return state;  
-
-    case types.GET_MATCHES:
       return state;
+
+    case types.LOAD_MATCHES: {
+      const newState = JSON.parse(JSON.stringify(state));
+      newState.matches = action.users;
+      return newState;
+    }
+
+    case types.SET_LOGIN: {
+      const newState = JSON.parse(JSON.stringify(state));
+      newState.userLogin = action.login;
+      return newState;
+    }
 
     case types.SWIPE_RIGHT:
       return state;

@@ -67,7 +67,6 @@ const userController = {
           }
         });
       }).then((userInfo) => {
-        console.log('userInfo:', userInfo);
         const { login, followers, avatar_url } = userInfo;
         const findUser = `SELECT * FROM users WHERE login = '${login}'`;
         client.query(findUser, (err, results) => {
@@ -78,11 +77,13 @@ const userController = {
                 console.log('error:', err);
                 res.status(404).send('Insert user error: ' + err);
               } else {
+                res.locals.login = userInfo.login;
                 next();
               }
             });
           } else {
-            console.log('moving on');
+            console.log('Already registered');
+            res.locals.login = userInfo.login;
             next();
           }
         });

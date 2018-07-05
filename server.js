@@ -26,7 +26,7 @@ app.use(cookieParser());
 app.get('/', (req, res) => {
   console.log('cookies yo', req.cookies);
   if (req.cookies.token) {
-    console.log('doing stuff');
+    console.log('Found token cookie');
   }
   res.sendFile(path.resolve(__dirname, './dist/index.html'));
 });
