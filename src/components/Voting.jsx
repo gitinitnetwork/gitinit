@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import logo from '../../assets/git-init-logo.png';
 import * as actions from '../actions/actions';
 
 
@@ -26,7 +27,11 @@ class Voting extends Component {
     // make fetch request to add status of current swipe to DB
     fetch('/matches', {
       method: 'POST',
-      body: { vote: false },
+      body: { mylogin: this.props.userLogin, theirlogin: this.props.pendingUsers[0].login, vote: false },
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json',
+      },
     })
       .then(res => res.json())
       .then((users) => { this.props.displayUsers(users); });
@@ -42,7 +47,11 @@ class Voting extends Component {
     // make fetch request to add status of current swipe to DB
     fetch('/matches', {
       method: 'POST',
-      body: { vote: true },
+      body: { mylogin: this.props.userLogin, theirlogin: this.props.pendingUsers[0].login, vote: true },
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json',
+      },
     })
       .then(res => res.json())
       .then((users) => {
@@ -51,9 +60,9 @@ class Voting extends Component {
 
     // splice current pending from pending users array and re-display
     new Promise((resolve, reject) => {
-      resolve(this.props.gitIgnore(this.props.currentPending))
+      resolve(this.props.gitCommit(this.props.currentPending));
     })
-      .then(() => { this.props.displayUsers(this.props.pendingUsers) });
+      .then(() => { this.props.displayUsers(this.props.pendingUsers); });
   }
 
   render() {
@@ -73,6 +82,6 @@ class Voting extends Component {
       </div>
     );
   }
-};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Voting);
