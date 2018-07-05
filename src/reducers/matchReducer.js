@@ -2,13 +2,7 @@ import * as types from '../constants/actionTypes';
 
 const homeInitialState = {
   userLogin: '',
-  pendingUsers: [
-    {
-      login: 'Leo',
-      avatar_url: '',
-      followers: 9,
-    },
-  ],
+  pendingUsers: [],
   currentPending: 0,
   matches: [],
 };
