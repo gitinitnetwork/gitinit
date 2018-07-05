@@ -9,26 +9,22 @@ const client = new pg.Client({ connectionString })
 
 client.connect(function (err) {
   if (err) {
-    console.log("client connect: ", err);
+    res.status(400).send(err);
   } else {
-    console.log('hi');
+    console.log('connected to pg...')
   }
 });
 
 const voteController = {
-
-    vote : (req, res) => {
+    vote: (req, res) => {
         // {mylogin, theirlogin, vote}
         const { mylogin, theirlogin, vote } = req.body;
         const q = `INSERT INTO matches VALUES ('${mylogin}', '${theirlogin}', '${vote}')`;
-
         const checkMatch = new Promise((resolve, reject) => {
           client.query(q, (err, results) => {
           if (err) {
-            console.log(err);
-          }
-          else {
-            console.log(results);
+            res.status(400).send(err);
+          } else {
             resolve();
           }
         });
@@ -36,26 +32,19 @@ const voteController = {
       let s = `SELECT vote FROM matches WHERE (mylogin='${theirlogin}' AND theirlogin='${mylogin}')`;
       client.query(s, (err, results) => {
         console.log("results SELECT: ", results.rows[0]);
-        let response;
-        if (err){
-          console.log(err);
-        }
-        if (results.rows[0] && results.rows[0].vote === true && req.body.vote === true){
+        if (err) {
+          res.status(400).send(err);
+        } else if (results.rows[0] && results.rows[0].vote === true && req.body.vote === true) {
           res.send(true);
-        }
-        if (!results.rows[0]){
+        } else if (!results.rows[0]){
           res.send("pending");
-        }
-        if (results.rows[0].vote === false || req.body.vote === false){
+        } else if (results.rows[0].vote === false || req.body.vote === false){
           res.send(false);
         }
         ;
       })
-
-    })
-    
-}
-
+    })  
+  }
 }
 
 module.exports = voteController;
