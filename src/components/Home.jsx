@@ -1,11 +1,26 @@
 import React from 'react';
+import { bindActionCreators } from 'redux'
+import styles from '../styles.css';
 
-const Home = () => {
+
+
+
+
+const Home = (props) => {
+console.log(props);
   return (
-    <div id="login-container">
-      <button type="button"><a href="https://github.com/login/oauth/authorize?client_id=d337730ee82c0f67d053&scope=user">Log in with Github</a></button>
+    <div id="container">
+    <img id="homePic"
+      src={props.sampleUsers[0].avatar_url} />
     </div>
   );
 };
 
-export default Home;
+
+
+
+
+
+
+
+
