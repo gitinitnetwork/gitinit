@@ -1,5 +1,6 @@
 // Router dependencies
 const express = require('express');
+const pg = require('pg');
 const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -8,6 +9,16 @@ const cookieController = require('./controllers/cookieController');
 const voteController = require('./controllers/voteController');
 
 const app = express();
+// PG Connection
+const connectionString = 'postgres://grgrkypm:Wj-hDJsZaHn-pUoCSW_ON_z3JED4ZnPB@baasu.db.elephantsql.com:5432/grgrkypm'
+const client = new pg.Client({ connectionString })
+client.connect((err) => {
+  if (err) {
+    console.log('client connect error: ', err);
+  } else {
+    console.log('Connected to DB');
+  }
+});
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
