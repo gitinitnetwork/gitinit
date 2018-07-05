@@ -20,13 +20,14 @@ class Voting extends Component {
   constructor(props) {
     super(props)
     this.handleIgnore = this.handleIgnore.bind(this);
+    this.handleCommit = this.handleCommit.bind(this);
   }
 
   handleIgnore() {
     // make fetch request to add status of current swipe to DB
     fetch('/matches', {
       method: 'POST',
-      body: { mylogin: this.props.userLogin, theirlogin: this.props.pendingUsers[0].login, vote: false },
+      body: { mylogin: this.props.userLogin, theirlogin: this.props.pendingUsers[this.props.currentPending].login, vote: false },
       credentials: 'include',
       headers: {
         'content-type': 'application/json',
@@ -36,17 +37,15 @@ class Voting extends Component {
       .then((users) => { this.props.displayUsers(users); });
 
     // splice current pending from pending users array and re-display
-    new Promise((resolve, reject) => {
-      resolve(this.props.gitIgnore(this.props.currentPending));
-    })
-      .then(() => { this.props.displayUsers(this.props.pendingUsers); });
+    this.props.gitIgnore(this.props.currentPending);
+    this.props.displayUsers(this.props.pendingUsers);
   }
 
   handleCommit() {
     // make fetch request to add status of current swipe to DB
     fetch('/matches', {
       method: 'POST',
-      body: { mylogin: this.props.userLogin, theirlogin: this.props.pendingUsers[0].login, vote: true },
+      body: { mylogin: this.props.userLogin, theirlogin: this.props.pendingUsers[this.props.currentPending].login, vote: true },
       credentials: 'include',
       headers: {
         'content-type': 'application/json',
@@ -65,7 +64,11 @@ class Voting extends Component {
   }
 
   render() {
+    if (!this.props.pendingUsers[0]) {
+      return <div><h3>Loading Matches...</h3></div>;
+    }
     console.log('random', this.props.currentPending);
+    console.log('pending at current', this.props.pendingUsers[this.props.currentPending]);
     // const avatar_urls = this.props.pendingUsers.map(user => user.avatar_url);
     return (
       <div id="voting-container">
@@ -79,8 +82,8 @@ class Voting extends Component {
           <h4>Followers: { this.props.pendingUsers[this.props.currentPending].followers }</h4>
         </div>
         <div id="voting-buttons">
-          <button className="buttons" id="ignore" onClick={this.handleIgnore}>Git Ignore</button>
-          <button className="buttons" id="commit" onClick={this.handleCommit}>Git Commit</button>
+          <button type="button" className="buttons" id="ignore" onClick={this.handleIgnore}>Git Ignore</button>
+          <button type="button" className="buttons" id="commit" onClick={this.handleCommit}>Git Commit</button>
         </div>
       </div>
     );
