@@ -53,9 +53,18 @@ const voteController = {
       })
 
     })
-    
+  },
+
+  getMatches : (req, res) => {
+    const { mylogin } = req.body;
+    let s = `SELECT * FROM matches WHERE (mylogin='${mylogin}' OR theirlogin='${mylogin}')`;
+    client.query(s, (err, results) => {
+      if(err) console.log(err);
+      console.log("results : ", results);
+      for(let i = 0; results.rows)
+      res.send(results)
+  });
+}
 }
 
-}
-
-module.exports = voteController;
+module.exports = voteController
