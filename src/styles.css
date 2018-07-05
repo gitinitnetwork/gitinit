@@ -12,8 +12,14 @@ body {
   margin: auto;
 }
 
-div {
-  color: #BAD;
+#login-container {
+  background: #fff;
+  text-align: center;
+  color: darkblue;
+  height: 450px;
+  width: 400px;
+  margin: auto;
+  opacity: 0.9;
 }
 
 #container {

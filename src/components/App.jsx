@@ -36,7 +36,7 @@ class App extends Component {
       }
     }
     return (
-      <div>
+      <div id="login-container">
         <h1>Git Init!</h1>
         <Login />
       </div>
