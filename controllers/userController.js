@@ -1,6 +1,18 @@
+const pg = require('pg');
 const querystring = require('querystring');
 const request = require('request');
 require('dotenv').config();
+
+const connectionString = 'postgres://grgrkypm:Wj-hDJsZaHn-pUoCSW_ON_z3JED4ZnPB@baasu.db.elephantsql.com:5432/grgrkypm';
+const client = new pg.Client({ connectionString });
+
+client.connect((err) => {
+  if (err) {
+    console.log('client connect error: ', err);
+  } else {
+    console.log('Connected to DB');
+  }
+});
 
 const userController = {
   getAllUsers: (req, res, next) => {

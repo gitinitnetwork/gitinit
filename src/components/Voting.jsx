@@ -10,7 +10,7 @@ const Voting = (props) => {
   return (
     <div id="voting-container">
       <div id="route-buttons">
-        <Link to="/settings"><div className="settings-link"><button><i className="fas fa-cog fa-2x" /></button></div></Link>
+        <Link to="/settings"><div className="settings-link"><button><i className="fas fa-comments fa-2x" /></button></div></Link>
         <Link to="/matches"><div className="matches-link"><button><i className="far fa-heart fa-2x" /></button></div></Link>
       </div>
       <img id="homePic" alt="Vote On Me" src={props.pendingUsers[0].avatar_url} />
