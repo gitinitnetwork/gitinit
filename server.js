@@ -56,8 +56,6 @@ app.get('/vote', );
 // Swipe left
 app.post('/swipe', voteController.vote);
 
-// Swipe right
-app.post('/swipe/:commit', );
 
 // Display all matches
-app.get('/matches');
+app.post('/matches', voteController.getMatches);
