@@ -9,7 +9,8 @@ const mapStateToProps = store => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  displayUsers: users => dispatch(actions.displayUsers(users))
+  displayUsers: users => dispatch(actions.displayUsers(users)),
+  setLogin: users => dispatch(actions.setLogin(users)),
 });
 
 class App extends Component {
@@ -25,11 +26,19 @@ class App extends Component {
 
   render() {
     if (document.cookie) {
-      return <Home />
+      const cookies = document.cookie.split(' ');
+      const parsedCookies = {};
+      cookies.forEach((el) => {
+        parsedCookies[el.split('=')[0]] = el.split('=')[1];
+      });
+      if (parsedCookies.login) {
+        this.props.setLogin(parsedCookies.login);
+        return <Home />;
+      }
     }
     return (
       <div>
-        <h1>Hi Will</h1>
+        <h1>Git Init!</h1>
         <Login />
       </div>
     );
