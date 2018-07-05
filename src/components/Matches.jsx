@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
@@ -12,7 +12,7 @@ const mapDispatchToProps = dispatch => ({
   loadMatches: users => dispatch(actions.loadMatches(users)),
 });
 
-class Matches extends React.Component {
+class Matches extends Component {
   componentDidMount() {
     fetch('/matches', {
       method: 'POST',
@@ -22,8 +22,8 @@ class Matches extends React.Component {
         'content-type': 'application/json',
       },
     })
-      .then(res => res.json())
-      .then((users) => { this.props.loadMatches(users); });
+    .then(res => res.json())
+    .then((users) => { this.props.loadMatches(users); });
   }
 
   render() {
