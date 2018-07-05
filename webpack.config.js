@@ -20,6 +20,10 @@ module.exports = {
         include: /src/,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.(gif|svg|jpg|png)$/,
+        loader: "url-loader",
+      }
     ],
   },
   plugins: [htmlPlugin],

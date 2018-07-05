@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import logo from '../../assets/git-init-logo.png'
 import * as actions from '../actions/actions';
 
 
@@ -62,8 +63,8 @@ class Voting extends Component {
     return (
       <div id="voting-container">
         <div id="route-buttons">
-          <Link to="/settings"><div className="settings-link"><button>Settings</button></div></Link>
-          <Link to="/matches"><div className="matches-link"><button>Matches</button></div></Link>
+          <Link to="/settings"><div className="settings-link"><button><i className="fas fa-cog fa-2x" /></button></div></Link>
+          <Link to="/matches"><div className="matches-link"><button><img src={logo} width="80" /></button></div></Link>
         </div>
         <img id="homePic" src={avatar_urls[this.props.currentPending]} />
         <div id="voting-buttons">

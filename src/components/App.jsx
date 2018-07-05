@@ -6,7 +6,7 @@ import * as actions from '../actions/actions';
 
 const mapStateToProps = store => ({
   userLogin: store.matches.userLogin,
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   displayUsers: users => dispatch(actions.displayUsers(users)),
