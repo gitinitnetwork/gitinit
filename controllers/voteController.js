@@ -9,9 +9,9 @@ const client = new pg.Client({ connectionString })
 
 client.connect(function (err) {
   if (err) {
-    console.log("client connect: ", err);
+    res.status(400).send(err);
   } else {
-    console.log('hi');
+    console.log('connected to pg...')
   }
 });
 
@@ -25,7 +25,6 @@ const voteController = {
           if (err) {
             res.status(400).send(err);
           } else {
-            console.log('results', results);
             resolve();
           }
         });
