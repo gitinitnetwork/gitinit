@@ -17,6 +17,10 @@ class Matches extends Component {
     fetch('/matches', {
       method: 'POST',
       body: { mylogin: this.props.userLogin },
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json',
+      },
     })
     .then(res => res.json())
     .then((users) => { this.props.loadMatches(users); });

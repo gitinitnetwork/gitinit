@@ -4,7 +4,6 @@ const request = require('request');
 require('dotenv').config();
 
 const connectionString = 'postgres://grgrkypm:Wj-hDJsZaHn-pUoCSW_ON_z3JED4ZnPB@baasu.db.elephantsql.com:5432/grgrkypm';
-
 const client = new pg.Client({ connectionString });
 
 client.connect((err) => {
