@@ -25,12 +25,12 @@ class Voting extends Component {
 
   handleIgnore() {
     // make fetch request to add status of current swipe to DB
-    fetch('/matches', {
-      method: 'POST',
-      body: { vote: false },
-    })
-    .then(res => res.json())
-    .then(users => { this.props.displayUsers(users); });
+    // fetch('/matches', {
+    //   method: 'POST',
+    //   body: { vote: false },
+    // })
+    // .then(res => res.json())
+    // .then(users => { this.props.displayUsers(users); });
 
     // splice current pending from pending users array and re-display
     new Promise((resolve, reject) => {
@@ -63,13 +63,13 @@ class Voting extends Component {
     return (
       <div id="voting-container">
         <div id="route-buttons">
-          <Link to="/settings"><div className="settings-link"><button><i className="fas fa-cog fa-2x" /></button></div></Link>
-          <Link to="/matches"><div className="matches-link"><button><img src={logo} width="80" /></button></div></Link>
+          <Link to="/settings"><div className="settings-link"><button className="buttons"><i className="fas fa-cog fa-2x" /></button></div></Link>
+          <Link to="/matches"><div className="matches-link"><button className="buttons"><img src={logo} width="80" /></button></div></Link>
         </div>
         <img id="homePic" src={avatar_urls[this.props.currentPending]} />
         <div id="voting-buttons">
-          <button id="ignore" onClick={this.handleIgnore}>Git Ignore</button>
-          <button id="commit" onClick={this.handleCommit}>Git Commit</button>
+          <button className="buttons" id="ignore" onClick={this.handleIgnore}>Git Ignore</button>
+          <button className="buttons" id="commit" onClick={this.handleCommit}>Git Commit</button>
         </div>
       </div>
     );
