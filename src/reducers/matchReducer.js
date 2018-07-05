@@ -8,17 +8,16 @@ const homeInitialState = {
       followers: 9,
     },
   ],
-  
-}
+};
 
 const matchReducer = (state = homeInitialState, action) => {
   switch (action.type) {
-    case types.DISPLAY_USERS:
-      console.log('in match reducer')
-      let newState = JSON.parse(JSON.stringify(state));
+    case types.DISPLAY_USERS: {
+      console.log('in match reducer');
+      const newState = JSON.parse(JSON.stringify(state));
       newState.pendingUsers = action.users;
       return newState;
-
+    }
     case types.GIT_IGNORE:
       return state;
 
@@ -31,15 +30,12 @@ const matchReducer = (state = homeInitialState, action) => {
     case types.SWIPE_RIGHT:
       return state;
 
-    case types.GET_MATCHES:
-      return state;
-    
     case types.LOG_OUT:
       return state;
 
     default:
       return state;
+  }
+};
 
-  }};
-
-  export default matchReducer;
+export default matchReducer;

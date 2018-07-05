@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const mapStateToProps = store => ({
-  pendingUsers: store.matches.pendingUsers
-})
+  pendingUsers: store.matches.pendingUsers,
+});
 
 const Voting = (props) => {
   return (
@@ -13,7 +13,7 @@ const Voting = (props) => {
         <Link to="/settings"><div className="settings-link"><button>Settings</button></div></Link>
         <Link to="/matches"><div className="matches-link"><button>Matches</button></div></Link>
       </div>
-      <img id="homePic" src={props.pendingUsers[0].avatar_url} />
+      <img id="homePic" alt="Vote On Me" src={props.pendingUsers[0].avatar_url} />
       <div id="voting-buttons">
         <button id="ignore">Git Ignore</button>
         <button id="commit">Git Commit</button>
