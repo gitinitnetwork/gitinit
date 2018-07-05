@@ -14,9 +14,9 @@ const homeInitialState = {
 const matchReducer = (state = homeInitialState, action) => {
   switch (action.type) {
     case types.DISPLAY_USERS:
-      console.log('in match reducer')
       let newState = JSON.parse(JSON.stringify(state));
       newState.pendingUsers = action.users;
+      console.log('in match reducer', newState)
       return newState;
 
     case types.GIT_IGNORE:

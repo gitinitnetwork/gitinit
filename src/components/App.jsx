@@ -24,10 +24,10 @@ class App extends Component {
     .then(res => res.json())
     .then(data => {
       console.log('dddat data', data)
-      console.log('display', this.props)
       this.props.displayUsers(data.rows)
     })
   }
+
   render() {
     if (document.cookie) {
       return <Home /> 
