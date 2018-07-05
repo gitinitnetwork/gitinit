@@ -5,6 +5,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const userController = require('./controllers/userController');
 const cookieController = require('./controllers/cookieController');
+const voteController = require('./controllers/voteController');
 
 // Postgresql stuff
 const pg = require('pg');
@@ -40,11 +41,11 @@ app.put('/profile', );
 
 
 // Get to swipe screen
-app.get('/swipe', );
+app.get('/vote',);
 
 
 // Swipe left
-app.post('/swipe/:stash', );
+app.post('/swipe', voteController.vote);
 
 // Swipe right
 app.post('/swipe/:commit', );
