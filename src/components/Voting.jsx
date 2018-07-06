@@ -71,8 +71,8 @@ class Voting extends Component {
     return (
       <div id="voting-container">
         <div id="route-buttons">
-          <Link to="/settings"><div className="settings-link"><button><i className="fas fa-cog fa-2x" /></button></div></Link>
-          <Link to="/matches"><div className="matches-link"><button><i className="fas fa-comments fa-2x" /></button></div></Link>
+          <Link to="/settings"><div className="settings-link"><button className="buttons"><i className="fas fa-cog fa-2x" /></button></div></Link>
+          <Link to="/matches"><div className="matches-link"><button className="buttons"><i className="fas fa-comments fa-2x" /></button></div></Link>
         </div>
         <img id="homePic" src={this.props.pendingUsers[this.props.currentPending].avatar_url} alt="Avatar pending" />
         <div className="pending-info">
