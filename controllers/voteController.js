@@ -46,6 +46,7 @@ const voteController = {
   },
 
   getMatches: (req, res) => {
+    console.log('voteController getMatches body:', req.body);
     const matches = [];
     const { mylogin } = req.body;
     const s = `SELECT * FROM matches WHERE (mylogin='${mylogin}' OR theirlogin='${mylogin}')`;
@@ -65,16 +66,18 @@ const voteController = {
         resolve();
       });
     }).then(() => {
-      console.log('response:', response)
-      // for(let i = 0; i < response.length; i++){
+      console.log('response:', response);
+      if (response.length === 0) return res.json({ none: 'none' });
       const u = 'SELECT * FROM users;';
       client.query(u, (err, results) => {
         if (err) console.log(err);
-        for (let j = 0; j < results.rows.length; j++) {
-          if (response.includes(results.rows[j].login)) matches.push(results.rows[j]);
+        else {
+          for (let j = 0; j < results.rows.length; j += 1) {
+            if (response.includes(results.rows[j].login)) matches.push(results.rows[j]);
+          }
+          console.log(matches);
+          res.json(matches);
         }
-        res.send(matches);
-        console.log(matches);
       });
     });
   },

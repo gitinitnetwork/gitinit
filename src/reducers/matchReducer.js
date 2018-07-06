@@ -32,7 +32,7 @@ const matchReducer = (state = homeInitialState, action) => {
 
     case types.LOAD_MATCHES: {
       let newState = JSON.parse(JSON.stringify(state));
-      newState.pendingUsers.splice(action.index, 1);
+      newState.matches = action.users;
       return newState;
     }
 
@@ -41,12 +41,6 @@ const matchReducer = (state = homeInitialState, action) => {
       newState.userLogin = action.login;
       return newState;
     }
-
-    case types.SWIPE_RIGHT:
-      return state;
-
-    case types.LOG_OUT:
-      return state;
 
     default:
       return state;
