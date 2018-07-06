@@ -15,7 +15,7 @@ client.connect((err) => {
 
 const voteController = {
   vote: (req, res) => {
-    // {mylogin, theirlogin, vote}
+    console.log('voteController.vote body:', req.body);
     const { mylogin, theirlogin, vote } = req.body;
     const q = `INSERT INTO matches VALUES ('${mylogin}', '${theirlogin}', '${vote}')`;
     const checkMatch = new Promise((resolve, reject) => {
