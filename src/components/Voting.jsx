@@ -37,8 +37,12 @@ class Voting extends Component {
       .then((users) => { this.props.displayUsers(users); });
 
     // splice current pending from pending users array and re-display
-    this.props.gitIgnore(this.props.currentPending);
-    this.props.displayUsers(this.props.pendingUsers);
+    const ignore = new Promise((resolve, reject) => {
+      resolve(this.props.gitIgnore(this.props.currentPending))
+    })
+      .then(() => {
+        this.props.displayUsers(this.props.pendingUsers);
+      });
   }
 
   handleCommit() {
@@ -57,8 +61,12 @@ class Voting extends Component {
       });
 
     // splice current pending from pending users array and re-display
-    this.props.gitCommit(this.props.currentPending);
-    this.props.displayUsers(this.props.pendingUsers);
+    const commit = new Promise((resolve, reject) => {
+      resolve(this.props.gitCommit(this.props.currentPending))
+    })
+      .then(() => {
+        this.props.displayUsers(this.props.pendingUsers);
+      });
   }
 
   render() {
@@ -76,8 +84,8 @@ class Voting extends Component {
         </div>
         <img id="homePic" src={this.props.pendingUsers[this.props.currentPending].avatar_url} alt="Avatar pending" />
         <div className="pending-info">
-          <h4>User: { this.props.pendingUsers[this.props.currentPending].login }</h4>
-          <h4>Followers: { this.props.pendingUsers[this.props.currentPending].followers }</h4>
+          <h4>User: {this.props.pendingUsers[this.props.currentPending].login}</h4>
+          <h4>Followers: {this.props.pendingUsers[this.props.currentPending].followers}</h4>
         </div>
         <div id="voting-buttons">
           <button type="button" className="buttons" id="ignore" onClick={this.handleIgnore}>Git Ignore</button>
