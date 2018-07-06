@@ -25,9 +25,9 @@ class Voting extends Component {
 
   handleIgnore() {
     // make fetch request to add status of current swipe to DB
-    fetch('/matches', {
+    fetch('/swipe', {
       method: 'POST',
-      body: { mylogin: this.props.userLogin, theirlogin: this.props.pendingUsers[this.props.currentPending].login, vote: false },
+      body: JSON.stringify({ mylogin: this.props.userLogin, theirlogin: this.props.pendingUsers[this.props.currentPending].login, vote: false }),
       credentials: 'include',
       headers: {
         'content-type': 'application/json',
@@ -43,9 +43,9 @@ class Voting extends Component {
 
   handleCommit() {
     // make fetch request to add status of current swipe to DB
-    fetch('/matches', {
+    fetch('/swipe', {
       method: 'POST',
-      body: { mylogin: this.props.userLogin, theirlogin: this.props.pendingUsers[this.props.currentPending].login, vote: true },
+      body: JSON.stringify({ mylogin: this.props.userLogin, theirlogin: this.props.pendingUsers[this.props.currentPending].login, vote: true }),
       credentials: 'include',
       headers: {
         'content-type': 'application/json',
@@ -57,10 +57,8 @@ class Voting extends Component {
       });
 
     // splice current pending from pending users array and re-display
-    new Promise((resolve, reject) => {
-      resolve(this.props.gitCommit(this.props.currentPending));
-    })
-      .then(() => { this.props.displayUsers(this.props.pendingUsers); });
+    this.props.gitCommit(this.props.currentPending);
+    this.props.displayUsers(this.props.pendingUsers);
   }
 
   render() {
@@ -73,8 +71,8 @@ class Voting extends Component {
     return (
       <div id="voting-container">
         <div id="route-buttons">
-          <Link to="/settings"><div className="settings-link"><button><i className="fas fa-cog fa-2x" /></button></div></Link>
-          <Link to="/matches"><div className="matches-link"><button><i className="fas fa-comments fa-2x" /></button></div></Link>
+          <Link to="/settings"><div className="settings-link"><button className="buttons"><i className="fas fa-cog fa-2x" /></button></div></Link>
+          <Link to="/matches"><div className="matches-link"><button className="buttons"><i className="fas fa-comments fa-2x" /></button></div></Link>
         </div>
         <img id="homePic" src={this.props.pendingUsers[this.props.currentPending].avatar_url} alt="Avatar pending" />
         <div className="pending-info">

@@ -55,6 +55,7 @@ button:active {
 #route-buttons {
   display: flex;
   flex-direction: row;
+  margin-bottom: 2rem;
 }
 
 .close-button {
