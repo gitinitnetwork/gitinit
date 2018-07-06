@@ -61,6 +61,7 @@ button:active {
 .close-button {
   width: 10px;
   height: 10px;
+  margin: 20px;
 }
 
 #login-button {
@@ -86,14 +87,23 @@ button:active {
 
 #matches {
   width: 50%;
+  margin-top: 5rem;
 }
 
 .matched-user {
-  height: 5rem;
+  background-color: lightgray;
+  display: flex;
+  flex-direction: row;
+  height: 8rem;
   width: 100%;
+  margin: 2rem;
 }
 
 .matched-user img {
-  float: right;
-  height: 90%;
+  height: 100%;
+}
+
+.matched-text {
+  margin-top: -1rem;
+  margin-left: 5rem;
 }

@@ -39,9 +39,11 @@ class Matches extends Component {
     if (this.props.matches.length && !this.state.fetchedNone) {
       const matchRender = this.props.matches.map(m => (
         <div className="matched-user">
-          <h4>{m.login}</h4>
-          <h4>Followers: {m.followers}</h4>
           <img src={m.avatar_url} alt="Matched avatar" />
+          <div className="matched-text">
+            <h4>{m.login}</h4>
+            <h4>Followers: {m.followers}</h4>
+          </div>
         </div>
       ));
       return (
