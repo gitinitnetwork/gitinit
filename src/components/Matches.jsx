@@ -16,7 +16,7 @@ class Matches extends Component {
   componentDidMount() {
     fetch('/matches', {
       method: 'POST',
-      body: { mylogin: this.props.userLogin },
+      body: JSON.stringify({ mylogin: this.props.userLogin }),
       credentials: 'include',
       headers: {
         'content-type': 'application/json',
