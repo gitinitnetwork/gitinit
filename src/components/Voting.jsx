@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => ({
 
 class Voting extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.handleIgnore = this.handleIgnore.bind(this);
     this.handleCommit = this.handleCommit.bind(this);
   }

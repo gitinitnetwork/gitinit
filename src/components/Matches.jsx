@@ -13,6 +13,11 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class Matches extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { fetchedNone: false };
+  }
+
   componentDidMount() {
     fetch('/matches', {
       method: 'POST',
@@ -22,12 +27,16 @@ class Matches extends Component {
         'content-type': 'application/json',
       },
     })
-    .then(res => res.json())
-    .then((users) => { this.props.loadMatches(users); });
+      .then(res => res.json())
+      .then((users) => {
+        console.log('client match response:', users);
+        if (users.none) this.state.fetchedNone = true;
+        else this.props.loadMatches(users);
+      });
   }
 
   render() {
-    if (this.props.matches.length) {
+    if (this.props.matches.length && !this.state.fetchedNone) {
       const matchRender = this.props.matches.map(m => (
         <div className="matched-user">
           <h4>{m.login}</h4>
@@ -39,6 +48,13 @@ class Matches extends Component {
         <div id="matches">
           <Link to="/"><div className="close-button"><button>X</button></div></Link>
           {matchRender}
+        </div>
+      );
+    } else if (this.state.fetchedNone) {
+      return (
+        <div id="matches">
+          <Link to="/"><div className="close-button"><button>X</button></div></Link>
+          <h4>You have no matches. Sad.</h4>
         </div>
       );
     }

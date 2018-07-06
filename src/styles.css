@@ -83,3 +83,17 @@ button:active {
 #voting-container {
   margin-top: 30px;
 }
+
+#matches {
+  width: 50%;
+}
+
+.matched-user {
+  height: 5rem;
+  width: 100%;
+}
+
+.matched-user img {
+  float: right;
+  height: 90%;
+}
